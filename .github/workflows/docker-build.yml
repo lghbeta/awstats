@@ -22,7 +22,7 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           images: aniven/awstats
 
@@ -31,5 +31,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: aniven/awstats:latest
           labels: ${{ steps.meta.outputs.labels }}
