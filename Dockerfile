@@ -24,7 +24,7 @@ ARG AWSTATS_VERSION=7.8-r2
 
 RUN apk add --no-cache awstats=${AWSTATS_VERSION} tzdata=${TZDATA_VERSION}
 
-COPY awstats_env.conf /etc/
+COPY awstats.default.conf /etc/
 COPY awstats_httpd.conf /usr/local/apache2/conf/
 COPY entrypoint.sh /usr/local/bin/
 
