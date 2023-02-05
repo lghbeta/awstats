@@ -29,10 +29,6 @@ COPY awstats_httpd.conf /usr/local/apache2/conf/
 COPY entrypoint.sh /usr/local/bin/
 
 ENV AWSTATS_CONF_LOGFILE="/var/local/log/access.log"
-ENV AWSTATS_CONF_LOGFORMAT="%host %other %logname %time1 %methodurl %code %bytesd %refererquot %uaquot"
-ENV AWSTATS_CONF_SITEDOMAIN="my_website"
-ENV AWSTATS_CONF_HOSTALIASES="localhost 127.0.0.1 REGEX[^.*$]"
-ENV AWSTATS_CONF_INCLUDE="."
 
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["httpd-foreground"]
