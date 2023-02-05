@@ -7,7 +7,7 @@ if [ -x /usr/local/bin/autorun.sh ]; then
 fi
 
 if [ ! -f /etc/awstats/awstats.conf ]; then
-    envsubst </etc/awstats_env.conf >/etc/awstats/awstats.conf
+    envsubst </etc/awstats.default.conf >/etc/awstats/awstats.conf
 fi
 
 exec "$@"
