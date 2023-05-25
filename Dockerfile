@@ -1,4 +1,4 @@
-FROM httpd:2.4.55-alpine
+FROM httpd:2.4.57-alpine
 
 ARG MOD_PERL_VERSION=2.0.12
 ARG MOD_PERL_SHA=f5b821b59b0fdc9670e46ed0fcf32d8911f25126189a8b68c1652f9221eee269
@@ -19,8 +19,8 @@ RUN apk add --no-cache gettext \
     && rm -rf ./mod_perl-${MOD_PERL_VERSION}* \
     && apk del --no-cache .build-dependencies
 
-ARG TZDATA_VERSION=2022f-r1
-ARG AWSTATS_VERSION=7.8-r2
+ARG TZDATA_VERSION=2023c-r1
+ARG AWSTATS_VERSION=7.9-r0
 
 RUN apk add --no-cache awstats=${AWSTATS_VERSION} tzdata=${TZDATA_VERSION}
 
@@ -29,6 +29,10 @@ COPY awstats_httpd.conf /usr/local/apache2/conf/
 COPY entrypoint.sh /usr/local/bin/
 
 ENV AWSTATS_CONF_LOGFILE="/var/local/log/access.log"
+#ENV AWSTATS_CONF_LOGFORMAT="%host %other %logname %time1 %methodurl %code %bytesd %refererquot %uaquot"
+#ENV AWSTATS_CONF_SITEDOMAIN="my_website"
+#ENV AWSTATS_CONF_HOSTALIASES="localhost 127.0.0.1 REGEX[^.*$]"
+#ENV AWSTATS_CONF_INCLUDE="."
 
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["httpd-foreground"]
